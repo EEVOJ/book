@@ -1,3 +1,3 @@
 # 你好
 
-这里是 Verilog Online Judge 文档网站。
+这里是 THU EE Verilog Online Judge 文档网站。

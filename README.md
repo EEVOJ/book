@@ -1,6 +1,6 @@
-# VOJ 文档
+# THU EE VOJ documentation
 
-<https://thu-mobile-dev.github.io/book>
+地址 <http://166.111.223.64:9999>
 
 - 生成 [MkDocs](https://www.mkdocs.org) 
 - 主题 [Material](https://github.com/squidfunk/mkdocs-material)
