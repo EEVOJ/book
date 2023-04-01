@@ -1,4 +1,4 @@
-# 服务链接汇总
+# 链接汇总
 
 - 代码仓库 <https://git.tsinghua.edu.cn/eevoj/vojservices>
 - fastapi-synthesis

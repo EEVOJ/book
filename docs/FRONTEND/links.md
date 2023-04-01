@@ -1,4 +1,4 @@
-# 前端链接汇总
+# 链接汇总
 
 - 代码仓库 <https://git.tsinghua.edu.cn/eevoj/vojfrontend>
 - book <http://166.111.223.64:20999>
