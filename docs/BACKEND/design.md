@@ -9,32 +9,32 @@
 
 ### 公开
 
-- 查看所有公告（GET /notice）
-    - 查看一个公告的详情（GET /notice/pk）
-- 查看所有题目（GET /problem）
-    - 查看一道题目的详情（GET /problem/pk）
+- 查看所有公告（GET `/notice`）
+    - 查看一个公告的详情（GET `/notice/<notice_pk>`）
+- 查看所有题目（GET `/problem`）
+    - 查看一道题目的详情（GET `/problem/<problem_pk>`）
 
 ### 账户管理
 
-- POST /account/signup
+- POST `/account/signup`
     - username
     - password
-- POST /account/login
+- POST `/account/login`
     - username
     - password
-- GET /account/logout
-- /account/reset_password
+- GET `/account/logout`
+- POST `/account/reset_password`
     - new_password
 
 ### 登录后才能进行的操作
 
-- 提交一道题目的答案（POST /submission/submit）
+- 提交一道题目的答案（POST `/submission/submit`）
     - problem_pk
     - code
-    - -> pk
-- 查看自己的所有提交（GET /submission）
-    - 查看自己某次提交的详情（GET /submission/pk）
-- 查看自己的题目完成情况（GET / submission/my）
+    - 返回 submission_pk
+- 查看自己的所有提交（GET `/submission`）
+    - 查看自己某次提交的详情（GET `/submission/<submission_pk>`）
+- 查看自己的题目完成情况（GET `/submission/problems`）
 
 ## 数据结构
 
