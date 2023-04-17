@@ -9,14 +9,13 @@ nav:
   - 服务:
     - SERVICES/links.md
     - SERVICES/requirements.md
-  - 前端:
-    - FRONTEND/links.md
-    - FRONTEND/requirements.md
   - 后端:
     - BACKEND/links.md
-    - BACKEND/requirements.md
-    - BACKEND/django-notes.md
+    - BACKEND/design.md
     - BACKEND/cos.md
+    - BACKEND/django-notes.md
+  - 前端:
+    - FRONTEND/links.md
 
 # [Extensions]
 plugins:
