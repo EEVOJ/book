@@ -79,4 +79,86 @@
 
 ### 开发者调用 API
 
-TODO
+<https://cloud.tencent.com/document/product/436/7751> 中有腾讯云对象存储提供的全部 API，同时提供了对应的 SDK <https://cloud.tencent.com/document/product/436/6474>。
+
+这里为了简洁，我使用纯 Python 代码实现了文本文件的上传功能：
+
+```py
+class TencentCloudObjectStorage:
+    def __init__(self):
+        self.COS_SECRET_ID = os.getenv("COS_SECRET_ID")
+        self.COS_SECRET_KEY = os.getenv("COS_SECRET_KEY")
+        BUCKET_NAME = os.getenv("BUCKET_NAME")
+        BUCKET_REGION = os.getenv("BUCKET_REGION")
+        self.HOST = f"{BUCKET_NAME}.cos.{BUCKET_REGION}.myqcloud.com"
+
+    def GetAuthorization(
+        self,
+        file_name: str,
+        headers: dict,
+    ) -> str:
+        def UrlEncode(string: str) -> str:
+            special_characters = " !\"#$%&'()*+,/:;<=>?@[\\]^`{|}"
+            data = string.encode()
+            data = b"".join(
+                [
+                    byte.to_bytes()
+                    if chr(byte) not in special_characters
+                    else f"%{byte:02X}".encode()
+                    for byte in data
+                ]
+            )
+            return data.decode()
+
+        sign_headers = dict(
+            [(UrlEncode(k).lower(), UrlEncode(v)) for k, v in headers.items()]
+        )
+
+        current_seconds = int(time.time())
+        authorization_sign_time = f"{current_seconds-60};{current_seconds+60}"
+        authorization_headers = ";".join(sorted(sign_headers.keys()))
+
+        sign_key = hmac.new(
+            self.COS_SECRET_KEY.encode(),
+            authorization_sign_time.encode(),
+            hashlib.sha1,
+        ).hexdigest()
+
+        http_headers = "&".join([f"{t[0]}={t[1]}" for t in sign_headers.items()])
+        http_string = f"put\n/{file_name}\n\n{http_headers}\n"
+        http_string_sha1 = hashlib.sha1(http_string.encode()).hexdigest()
+        string_to_sign = f"sha1\n{authorization_sign_time}\n{http_string_sha1}\n"
+
+        authorization_sign = hmac.new(
+            sign_key.encode(), string_to_sign.encode(), hashlib.sha1
+        ).hexdigest()
+
+        authorization = f"q-sign-algorithm=sha1&q-ak={self.COS_SECRET_ID}&q-sign-time={authorization_sign_time}&q-key-time={authorization_sign_time}&q-header-list={authorization_headers}&q-url-param-list=&q-signature={authorization_sign}"
+        return authorization
+
+    def UploadPlainTextFile(self, file_content: str, suffix: str = "txt") -> str | None:
+        file_name = (
+            datetime.datetime.now().strftime("%y%m%d%H%M")
+            + "-"
+            + uuid.uuid4().hex
+            + f".{suffix}"
+        )
+        url = f"https://{self.HOST}/{file_name}"
+
+        file_data = file_content.encode()
+        headers = {"Content-Type": "text/plain"}
+        headers["Authorization"] = self.GetAuthorization(
+            file_name=file_name, headers=headers
+        )
+
+        response = requests.put(url=url, data=file_data, headers=headers)
+
+        print(response.status_code)
+        print(response.content.decode())
+        if response.status_code == 200:
+            return url
+        else:
+            return None
+```
+
+这里 COS_SECRET_ID 和 COS_SECRET_KEY 都使用环境变量，需要在程序运行前设置好。
