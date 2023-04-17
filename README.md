@@ -1,6 +1,6 @@
 # THU EE VOJ documentation
 
-地址 <http://166.111.223.64:9999>
+网址 https://eevoj.github.io/book/
 
 - 生成 [MkDocs](https://www.mkdocs.org) 
 - 主题 [Material](https://github.com/squidfunk/mkdocs-material)
@@ -29,8 +29,8 @@ mkdocs serve
 
 ### nginx
 
-使用 `mkdocs build` 得到 `site/` 打包上传至服务器解压，在 nginx 的配置文件中设置端口和路径即可。
+使用 `mkdocs build` 得到 `site/` 打包上传至服务器解压，在 nginx 的配置文件中设置端口和路径即可。也可以直接使用仓库中的 docker-compose.yml 使用 Docker 进行部署。
 
 ### 使用 GitHub Pages
 
-本仓库已经添加 `.github/workflows/issueMySite.yml`，将仓库设置为 public，并在仓库页的 `Settings > Pages` 选择 `gh-pages` 等待片刻即可在 <https://thu-mobile-dev.github.io/book> 看到本网站。当修改提交到 main 分支，网页会自动构建部署。
+本仓库已经添加 `.github/workflows/issueMySite.yml`，将仓库设置为 public，并在仓库页的 `Settings > Pages` 选择 `gh-pages` 等待片刻即可在 <https://eevoj.github.io/book/> 看到本网站。当修改提交到 main 分支，网页会自动构建部署。
