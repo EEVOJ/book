@@ -15,6 +15,7 @@ nav:
   - 后端:
     - BACKEND/links.md
     - BACKEND/requirements.md
+    - BACKEND/django-notes.md
 
 # [Extensions]
 plugins:
