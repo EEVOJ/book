@@ -1,8 +1,8 @@
 # [Info]
-site_name: THU EE VOJ 文档 # 左上角标题
-site_url: http://166.111.223.64:9999
+site_name: EE VOJ 文档 # 左上角标题
+site_url: https://github.com/EEVOJ/book # 右上角点击跳转的链接
 site_author: 杨希杰
-site_description: THU EE Verilog Online Judge
+site_description: EE Verilog Online Judge
 
 # [Navigtion]
 nav:
@@ -22,7 +22,6 @@ plugins:
     # insider已经支持中文的分词搜索了 https://squidfunk.github.io/mkdocs-material/blog/2022/chinese-search-support/
       lang:
         - en
-  # - tags # 给单篇文章添加标签 https://squidfunk.github.io/mkdocs-material/setup/setting-up-tags/?h=tags
 markdown_extensions:
   - pymdownx.arithmatex: # latex支持
       generic: true
@@ -62,16 +61,16 @@ theme:
     - search.suggest # 搜索输入一些字母时推荐补全整个单词
     - search.highlight # 搜索出的文章关键词加入高亮
     - content.code.copy # 可以通过按钮复制代码
+    - content.action.edit # 点击按钮跳转到编辑页面  需要结合 edit_uri 一起使用
   language: zh # 一些提示性的文字会变成中文
   icon:
     repo: fontawesome/brands/github
-# edit_uri: edit/main/docs # 编辑按钮跳转的链接
+edit_uri: edit/main/docs # 编辑按钮跳转的链接
 ## [top-right corner]
-# TODO add open source repo
-# repo_url: https://github.com/thu-mobile-dev/book # 右上角点击跳转的链接
-# repo_name: thu-mobile-dev/book # 右上角的名字
+repo_url: https://github.com/EEVOJ/book # 右上角点击跳转的链接
+repo_name: EEVOJ book # 右上角的名字
 ## [bottom-left corner]
-copyright: VOJ 维护团队 / Creative Commons Attribution 4.0 # 左下角的版权声明
+copyright: 杨希杰 / Creative Commons Attribution 4.0 # 左下角的版权声明
 
 extra_css:
   - mkdocs/css/no-footer.css # 不使用底部的翻页
